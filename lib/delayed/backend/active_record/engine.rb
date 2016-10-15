@@ -7,6 +7,7 @@ module Delayed
         initializer 'delayed_job_active_record' do |_app|
           ActiveSupport.on_load(:active_record) do
             Delayed::Worker.backend = :active_record
+            ActiveSupport.run_load_hooks(:delayed_job_active_record)
           end
         end
       end
